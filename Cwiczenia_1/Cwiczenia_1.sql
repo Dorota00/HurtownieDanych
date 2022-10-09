@@ -5,7 +5,7 @@ USE cwiczenia1
 -- Exercise 1
 
 WITH cte AS (
-SELECT o.order_id
+SELECT	o.order_id
 	,o.date
 	,sum(od.quantity * p.price) AS order_price
 FROM orders o
@@ -32,7 +32,7 @@ HAVING STRING_AGG(ingredients, ',') NOT LIKE '%Pineapple%'
 -- Exercise 3
 
 WITH cte AS (
-SELECT o.order_id
+SELECT	o.order_id
 	,o.date
 	,sum(od.quantity * p.price) AS order_price
 FROM orders o
@@ -41,7 +41,7 @@ JOIN pizzas p ON od.pizza_id = p.pizza_id
 WHERE MONTH(date) = 2
 GROUP BY o.order_id, o.date )
 
-SELECT TOP (10) order_id
+SELECT TOP (10)	order_id
 	,order_price
 	,RANK () OVER (ORDER BY order_price DESC) AS rank_price
 FROM cte
@@ -49,7 +49,7 @@ FROM cte
 -- Exercise 4
 
 WITH cte AS (
-SELECT o.order_id
+SELECT	o.order_id
 	,sum(od.quantity * p.price) AS order_amount
 	,o.date
 FROM orders o
